@@ -1,0 +1,11 @@
+* {box-sizing: border-box;}
+
+body {
+	background-color: #ddd;
+}
+
+.graphContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
