@@ -1,11 +1,57 @@
 * {box-sizing: border-box;}
 
 body {
-	background-color: #ddd;
+	background-image: url("./images/background.png");
+	background-size: stretch;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.title {
+	font-size: 35px;
+	fill: #E0EBCF;
 }
 
 .graphContainer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: rgba(200,200,200,.3);
+}
+
+svg {
+	background-color: rgba(200,200,200,.5);
+}
+
+.info {
+	fill: #112938;
+}
+
+.names {
+ font-size: 25px;
+ font-weight: bold;
+}
+
+.ranks {
+ font-size: 20px;
+}
+
+.dopes {
+ font-size: 15px;
+}
+
+.times {
+	font-size: 20px;
+}
+
+p, .imgSrc {
+	width: 100%;
+	color: #BAE1D3;
+	text-decoration: none;
+}
+
+.imgSrc:hover {
+	color: white;
 }
