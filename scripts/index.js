@@ -69,17 +69,20 @@ svg.append("text")
 	.text("Cyclist Times and Doping History")
 // Append 'g' elements to SVG for X/Y axis
 	svg.append('g')
+	.style("font-size", "14px")
 	.attr("transform", "translate(" + p + ",0)")
     .call(yAxis)
 
     svg.append("g")
     	.attr("class", "axisBar")
+    	.style("font-size", "14px")
 		.attr("transform", "translate(0," + (h - p) + ")")
 		.attr("transfrom", "rotate(45)")
 		.call(xAxis);
 // Append text elements to X/Y axis
 	svg.append("text")
 		.attr("class","ytext")
+		.attr("fill", "#E0EBCF")
 		.attr("transform","rotate(-90)")
 		.attr("y", 0)
 		.attr("x", 0-(h/2) - p)
@@ -88,6 +91,7 @@ svg.append("text")
 
 	svg.append("text")
 	   .attr("class","xtext")
+	   .attr("fill", "#E0EBCF")
 	   .attr("x",w/2 - p)
 	   .attr("y",h - 5)
 	   .attr("text-anchor","middle")
@@ -112,7 +116,7 @@ svg.append("text")
 			let y = (i+1) * space;
 			return y + p;
 		})
-		.attr('r', 10)
+		.attr('r', 7)
 		.attr("fill", (d) => {
 			if(d.Doping.length !== 0) {
 				return "#BAE1D3";
@@ -125,9 +129,46 @@ svg.append("text")
 		.on("mouseout", handleMouseOut)
 	
 
+	//Add Map legend
+	svg.append("rect")
+		.attr("x", 100)
+		.attr("y", 100)
+		.attr("width", 50)
+		.attr("height", 50)
+		.attr("fill", "none")
+
+	svg.append("circle")
+		.attr("cx", 110)
+		.attr("cy", 110)
+		.attr("r", 7)
+		.attr("fill", "#BAE1D3")
+
+	svg.append("circle")
+		.attr("cx", 110)
+		.attr("cy", 140)
+		.attr("r", 7)
+		.attr("fill", "blue")
+
+	svg.append("text")
+		.attr("x", 120)
+		.attr("y", 115)
+		.text("History of Doping")
+
+	svg.append("text")
+		.attr("x", 120)
+		.attr("y", 145)
+		.text("No History of Doping")
+
 	// Add Text to individual data points
 function handleMouseOver(d, i)  {
 	d3.select(this)
+	svg.append("rect")
+		.attr("class", "rect")
+		.attr("x", 380)
+		.attr("y", 270)
+		.attr("width", 450)
+		.attr("height", 150)
+		.attr("fill", "rgba(0,0,0,.1)")
 	svg.append("text")
 		.attr("class", "names info")
 		.attr("id", (d, i) => "name" + this.id)
@@ -159,6 +200,7 @@ function handleMouseOver(d, i)  {
 //Remove text when mouse leaves data point
 function handleMouseOut(d, i)  {
 	d3.select(this)
+	d3.select(".rect").remove();
 	d3.select("#name" + this.id).remove();
 	d3.select("#rank" + this.id).remove();
 	d3.select("#dope" + this.id).remove();
